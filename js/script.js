@@ -8,15 +8,15 @@ const store=(k,v)=>{try{return v===undefined?sessionStorage.getItem(k):sessionSt
 const WEDDING_DATE=new Date('2027-04-10T16:00:00+08:00');
 // Love story: i = chapter symbol, c = accent colour, ph = photo path (e.g. 'assets/story1.jpg'), m = longer story shown when tapped.
 const STORY=[
- {y:'2007',t:'Where It All Began',s:'We first became classmates in Grade 2.',m:'Two little kids in one classroom, with no idea that the person at the next desk would become forever. [Replace with your own memory]',i:'✎',c:'#c9a24d',ph:''},
- {y:'Grade 7',t:'Reconnecting',s:'Our paths crossed again.',m:'Years later, fate quietly brought us back into each other’s world. [Replace with your own memory]',i:'❦',c:'#b8a35e',ph:''},
- {y:'Grade 8',t:'Getting Closer',s:'We talked more, and slowly grew closer.',m:'Conversations got longer, and friendship began to feel like something more. [Replace with your own memory]',i:'✉',c:'#d1a98a',ph:''},
- {y:'November 6, 2018',t:'The Beginning of Us',s:'We became M.U. — and Herbie began courting Princess.',m:'The day everything changed: a mutual understanding, and the start of a beautiful courtship. [Replace with your own memory]',i:'❀',c:'#c9956c',ph:''},
- {y:'January 6, 2022',t:'Officially Together',s:'We officially became a couple.',m:'After the waiting and the courting, we finally made it official. [Replace with your own memory]',i:'♡',c:'#c27e72',ph:''},
- {y:'November 16, 2025',t:'Forever Begins',s:'Herbie proposed to Princess.',m:'One question, one yes, and a lifetime of tomorrows. [Replace with your own memory]',i:'◈',c:'#b8933a',ph:''},
- {y:'April 10, 2027',t:'Our Forever',s:'The day we begin our married life together.',m:'And now we invite you to be part of the happiest chapter yet. ♡',i:'✦',c:'#a97f2f',ph:''}];
+ {y:'2007',t:'Where It All Began',s:'We first became classmates in Grade 2.',m:'Two little kids in one classroom, with no idea that the person at the next desk would become forever.',i:'✎',c:'#c9a24d',ph:'assets/2007.jpg'},
+ {y:'Grade 7',t:'Reconnecting',s:'Our paths crossed again.',m:'Years later, fate quietly brought us back into each other’s world.',i:'❦',c:'#b8a35e',ph:''},
+ {y:'Grade 8',t:'Getting Closer',s:'We talked more, and slowly grew closer.',m:'Conversations got longer, and friendship began to feel like something more.',i:'✉',c:'#d1a98a',ph:'assets/Grade8.jpg'},
+ {y:'November 6, 2018',t:'The Beginning of Us',s:'We became M.U. — and Herbie began courting Princess.',m:'The day everything changed: a mutual understanding, and the start of a beautiful courtship.',i:'❀',c:'#c9956c',ph:'assets/NewBeginning.jpg'},
+ {y:'January 6, 2022',t:'Officially Together',s:'We officially became a couple.',m:'After the waiting and the courting, we finally made it official.',i:'♡',c:'#c27e72',ph:'assets/Together.jpg'},
+ {y:'November 16, 2025',t:'Forever Begins',s:'Herbie proposed to Princess.',m:'One question, one yes, and a lifetime of tomorrows.',i:'◈',c:'#b8933a',ph:'assets/proposal.jpg'},
+ {y:'April 10, 2027',t:'Our Forever',s:'The day we begin our married life together.',m:'And now we invite you to be part of the happiest chapter yet. ♡',i:'✦',c:'#a97f2f',ph:'assets/Wedding.PNG'}];
 // Gallery: set src to 'assets/photo1.jpg' etc. Empty = elegant placeholder.
-const PHOTOS=[{src:'',cap:'Engagement'},{src:'',cap:'Together'},{src:'',cap:'Pre-wedding'},{src:'',cap:'The proposal'},{src:'',cap:'Golden hour'},{src:'',cap:'Always'},{src:'',cap:'Forever'}];
+const PHOTOS=[{src:'',cap:'Engagement'},{src:'',cap:'Together'},{src:'',cap:'Pre-wedding'},{src:'assets/proposal.jpg',cap:'The proposal'},{src:'',cap:'Golden hour'},{src:'',cap:'Always'},{src:'',cap:'Forever'}];
 // RSVP: plug a backend in here later (Google Sheets, Formspree, Firebase…).
 async function submitRSVP(data){console.info('RSVP',data);return{ok:true}}
 /* ============================== */
@@ -112,16 +112,17 @@ function initMain(){
  const tl=$('#timeline');
  STORY.forEach((c,n)=>{
   const a=document.createElement('article');a.className='ms reveal';a.dataset.i=c.i;a.style.setProperty('--c',c.c);
-  a.innerHTML=`<button aria-expanded="false" aria-controls="m${n}"><div class="ph" style="${c.ph?`background-image:url('${c.ph}')`:''};border-radius:${['50% 50% 6px 6px','50%','6px 50% 6px 50%','50% 6px 50% 6px','20px','50% 50% 50% 6px','6px 6px 50% 50%'][n%7]}">${c.ph?'':'Photo'}</div><div><span class="y">${c.y}</span><h3>${c.t}</h3><p>${c.s}</p><div class="more"><p id="m${n}">${c.m}</p></div><span class="tap">Tap to discover ✦</span></div></button>`;
+  a.innerHTML=`<button aria-expanded="false" aria-controls="m${n}"><div class="ph" style="${c.ph?`background-image:url('${c.ph}')`:''}"></div><div><span class="y">${c.y}</span><h3>${c.t}</h3><p>${c.s}</p><div class="more"><p id="m${n}">${c.m}</p></div><span class="tap">Tap to discover</span></div></button>`;
+  if(c.ph){const photo=new Image();photo.onload=()=>$('.ph',a).style.aspectRatio=`${photo.naturalWidth}/${photo.naturalHeight}`;photo.src=c.ph}
   const b=$('button',a);b.onclick=()=>{const o=b.getAttribute('aria-expanded')=='true';$$('.ms>button').forEach(x=>x.setAttribute('aria-expanded','false'));b.setAttribute('aria-expanded',!o);if(!o)burst(b.getBoundingClientRect().left+40,b.getBoundingClientRect().top+30)};
   tl.append(a);
  });
  // Gallery + lightbox
  const gal=$('#gal'),lb=$('#lb');let cur=0;
  PHOTOS.forEach((p,i)=>{const f=document.createElement('figure');f.className='reveal';f.tabIndex=0;f.setAttribute('role','button');f.setAttribute('aria-label','Open photo: '+p.cap);
-  f.innerHTML=`<div class="ph" style="${p.src?`background-image:url('${p.src}')`:''}">${p.src?'':'Your photo here'}</div><figcaption>${p.cap}</figcaption>`;
+  f.innerHTML=`<div class="ph" style="${p.src?`background-image:url('${p.src}')`:''}"></div><figcaption>${p.cap}</figcaption>`;
   f.onclick=()=>show(i);f.onkeydown=e=>{if(e.key=='Enter'||e.key==' '){e.preventDefault();show(i)}};gal.append(f)});
- function show(i){cur=(i+PHOTOS.length)%PHOTOS.length;const p=PHOTOS[cur],im=$('#lb-img');im.style.backgroundImage=p.src?`url('${p.src}')`:'';im.textContent=p.src?'':'Your photo here';$('#lb-cap').textContent=p.cap;lb.hidden=false;$('.x',lb).focus()}
+ function show(i){cur=(i+PHOTOS.length)%PHOTOS.length;const p=PHOTOS[cur],im=$('#lb-img');im.style.backgroundImage=p.src?`url('${p.src}')`:'';im.textContent='' ;$('#lb-cap').textContent=p.cap;lb.hidden=false;$('.x',lb).focus()}
  $('.x',lb).onclick=()=>lb.hidden=true;$('.pv',lb).onclick=()=>show(cur-1);$('.nx',lb).onclick=()=>show(cur+1);
  lb.onclick=e=>{if(e.target==lb)lb.hidden=true};
  addEventListener('keydown',e=>{if(lb.hidden)return;if(e.key=='Escape')lb.hidden=true;if(e.key=='ArrowLeft')show(cur-1);if(e.key=='ArrowRight')show(cur+1)});

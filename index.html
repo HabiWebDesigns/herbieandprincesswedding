@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#f6eddb">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
 <noscript><style>#intro,#envelope{display:none!important}[hidden]{display:block!important}.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body class="locked">
@@ -71,8 +71,8 @@
 <main id="main" hidden>
 <!-- 3 · HERO -->
 <section id="home" class="hero">
-  <p class="eyebrow reveal">Together with their families</p>
   <h2 class="hero-names script gt reveal">Herbie <small>&amp;</small> Princess</h2>
+  <p class="hero-tagline reveal">Together with their families</p>
   <p class="hero-date reveal">April 10, 2027</p>
   <p class="lead reveal">From classmates to best friends to forever — after a lifetime of small moments, we are saying “I do”, and we would be honoured to have you beside us.</p>
   <div class="cd reveal" role="timer" aria-label="Countdown to the wedding">
@@ -82,30 +82,28 @@
   <a class="cue" href="#story" aria-label="Scroll to our story">Our story<i></i></a>
 </section>
 
-<!-- 4 · LOVE STORY (rendered by script.js from the STORY array) -->
+<!-- 4 · LOVE STORY (rendered by js/script.js from the STORY array) -->
 <section id="story">
   <header class="head reveal"><p class="eyebrow">Chapter by chapter</p><h2>Our Love Story</h2><p class="hint">Tap each chapter to open it ✦</p></header>
   <div class="timeline" id="timeline"><span class="thread"></span></div>
 </section>
 
-<!-- 5 · WEDDING DETAILS — replace every <mark> placeholder -->
+<!-- 5 · WEDDING DETAILS -->
 <section id="details">
   <header class="head reveal"><p class="eyebrow">Join us</p><h2>Wedding Details</h2></header>
   <div class="grid">
-    <article class="card big reveal"><svg class="ic"><use href="#rose" width="56" height="56"/></svg><h3>The Ceremony</h3><p><mark>[Ceremony venue name]</mark><br><mark>[Venue address]</mark></p><p class="t">April 10, 2027 · <mark>[Time]</mark></p></article>
-    <article class="card reveal"><svg class="ic"><use href="#bloom" width="48" height="48"/></svg><h3>The Reception</h3><p><mark>[Reception venue]</mark><br><mark>[Address]</mark></p><p class="t"><mark>[Time]</mark></p></article>
-    <article class="card reveal"><svg class="ic"><use href="#leaf" width="56" height="30"/></svg><h3>Dress Code</h3><p><mark>[Champagne, ivory &amp; soft neutrals]</mark></p><div class="sws"><i style="background:#f6eddb"></i><i style="background:#e6d3a8"></i><i style="background:#c9a24d"></i><i style="background:#fffdf8"></i></div></article>
-    <article class="card wide reveal"><h3>Gentle Reminders</h3><p><mark>[Kindly confirm your attendance by (date).]</mark> <mark>[Parking, children, gifts, photos…]</mark></p></article>
+    <article class="card big reveal"><svg class="ic"><use href="#rose" width="56" height="56"/></svg><h3>The Ceremony</h3><p class="t">April 10, 2027</p></article>
+    <article class="card reveal"><svg class="ic"><use href="#leaf" width="56" height="30"/></svg><h3>Dress Code</h3><p>Champagne, ivory &amp; soft neutrals</p><div class="sws"><i style="background:#f6eddb"></i><i style="background:#e6d3a8"></i><i style="background:#c9a24d"></i><i style="background:#fffdf8"></i></div></article>
   </div>
 </section>
 
-<!-- 6 · GALLERY (rendered from PHOTOS array in script.js) -->
+<!-- 6 · GALLERY (rendered from PHOTOS array in js/script.js) -->
 <section id="gallery">
   <header class="head reveal"><p class="eyebrow">Moments</p><h2>Our Gallery</h2></header>
   <div class="gal" id="gal"></div>
 </section>
 
-<!-- 7 · RSVP — frontend only; see submitRSVP() in script.js to add a backend later -->
+<!-- 7 · RSVP — frontend only; see submitRSVP() in js/script.js to add a backend later -->
 <section id="rsvp">
   <header class="head reveal"><p class="eyebrow">Kindly reply</p><h2>RSVP</h2></header>
   <div class="rsvp reveal">
@@ -131,6 +129,6 @@
 <div id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
   <button class="x" aria-label="Close">×</button><button class="pv" aria-label="Previous">‹</button><div class="lb-img" id="lb-img"></div><button class="nx" aria-label="Next">›</button><p id="lb-cap"></p>
 </div>
-<script src="script.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>

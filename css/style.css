@@ -108,8 +108,9 @@ section{padding:clamp(4rem,10vw,7rem) calc(var(--edge) + 1.1rem);position:relati
 .head h2{margin:.3rem 0}
 .head::after{content:"";display:block;width:120px;height:12px;margin:1rem auto 0;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12'><path d='M0 6H44M76 6H120M44 6q8-9 16 0t16 0' fill='none' stroke='%23c9a24d'/></svg>")}
 .hint{font:italic 1rem 'Cormorant Garamond',serif;margin-top:.5rem}
-.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1rem;background:radial-gradient(ellipse at 50% 45%,rgba(255,253,248,.9),transparent 65%)}
-.hero-names{font-size:clamp(3.6rem,15vw,8.5rem);line-height:1}
+.hero{position:relative;isolation:isolate;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1rem;background:radial-gradient(ellipse at 50% 45%,rgba(255,253,248,.9),transparent 65%)}
+.hero-tagline{position:relative;z-index:1;margin:0;font:500 clamp(.58rem,1.2vw,1rem) Montserrat;letter-spacing:.22em;text-transform:uppercase;color:rgba(169,127,47,.9);white-space:nowrap;pointer-events:none;opacity:.95}
+.hero-names{position:relative;z-index:1;margin:0;padding:.08em 0 .12em;font-size:clamp(3.6rem,15vw,8.5rem);line-height:1.2}
 .hero-names small{font-size:.5em}
 .hero-date{font:400 clamp(1.1rem,3vw,1.6rem) 'Cormorant Garamond',serif;letter-spacing:.35em;text-transform:uppercase}
 .lead{max-width:34rem;font:italic clamp(1.1rem,2.5vw,1.35rem)/1.6 'Cormorant Garamond',serif}
@@ -130,7 +131,7 @@ section{padding:clamp(4rem,10vw,7rem) calc(var(--edge) + 1.1rem);position:relati
 .ms::before{content:attr(data-i);position:absolute;left:0;top:.4rem;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:1.1rem;color:#fff;background:radial-gradient(circle at 35% 30%,#fff3,var(--c));box-shadow:0 0 0 4px var(--cream),0 0 0 5px var(--c)}
 .ms>button{width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer;display:grid;gap:1rem;padding:1.2rem;border:1px solid var(--c);border-radius:14px;background:linear-gradient(145deg,rgba(255,253,248,.95),rgba(246,237,219,.9));box-shadow:0 10px 26px rgba(120,90,30,.12);transition:.4s}
 .ms>button:hover{transform:translateY(-3px)}
-.ms .ph{aspect-ratio:4/3;max-height:190px;width:100%;display:grid;place-items:center;font:italic .9rem 'Cormorant Garamond',serif;color:var(--g1);background:linear-gradient(135deg,#fffdf8,color-mix(in srgb,var(--c) 35%,#f6eddb));border:1px solid var(--c);outline:4px solid #fffdf8;outline-offset:-8px;background-size:cover;background-position:center}
+.ms .ph{aspect-ratio:4/3;width:100%;display:grid;place-items:center;font:italic .9rem 'Cormorant Garamond',serif;color:var(--g1);background:linear-gradient(135deg,#fffdf8,color-mix(in srgb,var(--c) 35%,#f6eddb));border:1px solid var(--c);border-radius:12px;background-size:contain;background-repeat:no-repeat;background-position:center}
 .ms h3{font-size:1.5rem;line-height:1.3}
 .ms .y{font:500 .68rem Montserrat;letter-spacing:.25em;text-transform:uppercase;color:var(--c);filter:brightness(.8)}
 .ms .more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s}
@@ -147,7 +148,6 @@ section{padding:clamp(4rem,10vw,7rem) calc(var(--edge) + 1.1rem);position:relati
  .ms>button{grid-template-columns:150px 1fr;align-items:center;text-align:left}
  .ms:nth-child(even)>button{grid-template-columns:1fr 150px;text-align:right}
  .ms:nth-child(even) .ph{order:2}
- .ms .ph{max-height:none;aspect-ratio:3/4}
  .timeline{padding-bottom:3rem}
 }
 
@@ -168,7 +168,7 @@ section{padding:clamp(4rem,10vw,7rem) calc(var(--edge) + 1.1rem);position:relati
 .gal figure{aspect-ratio:3/4;position:relative;cursor:pointer;border:1px solid var(--g2);padding:7px;background:#fffdf8;box-shadow:0 12px 26px rgba(120,90,30,.2);transition:.5s;transform:rotate(var(--r,0deg))}
 .gal figure:nth-child(odd){--r:-1.4deg}.gal figure:nth-child(even){--r:1.2deg}
 .gal figure:hover,.gal figure:focus-visible{transform:scale(1.04) rotate(0);z-index:3}
-.gal .ph,.lb-img{width:100%;height:100%;display:grid;place-items:center;color:var(--g1);font:italic 1.1rem 'Cormorant Garamond',serif;background:linear-gradient(135deg,#fffdf8,#ecd9a8) center/cover}
+.gal .ph,.lb-img{width:100%;height:100%;display:grid;place-items:center;color:var(--g1);font:italic 1.1rem 'Cormorant Garamond',serif;background:linear-gradient(135deg,#fffdf8,#ecd9a8) center/contain no-repeat}
 .gal figcaption{position:absolute;left:7px;right:7px;bottom:7px;padding:.5rem;text-align:center;font:italic 1rem 'Cormorant Garamond',serif;background:linear-gradient(transparent,rgba(255,253,248,.95));opacity:0;transition:.4s}
 .gal figure:hover figcaption{opacity:1}
 
