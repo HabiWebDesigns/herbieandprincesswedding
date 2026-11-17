@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Herbie &amp; Princess · April 10, 2027</title>
+<meta name="description" content="You are cordially invited to the wedding of Herbie &amp; Princess.">
+<meta name="theme-color" content="#f6eddb">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<noscript><style>#intro,#envelope{display:none!important}[hidden]{display:block!important}.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body class="locked">
+
+<!-- Shared SVG art: gold foil, champagne petals, leaf, blossom, layered rose -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4e2b0"/><stop offset=".35" stop-color="#c9a24d"/><stop offset=".6" stop-color="#f1dca0"/><stop offset="1" stop-color="#a97f2f"/></linearGradient>
+<radialGradient id="pet" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#fffdf8"/><stop offset=".7" stop-color="#f3e6cf"/><stop offset="1" stop-color="#e2c994"/></radialGradient>
+<linearGradient id="lf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ece5bd"/><stop offset="1" stop-color="#b5ad74"/></linearGradient>
+<ellipse id="po" cy="-26" rx="22" ry="24"/><ellipse id="pm" cy="-15" rx="14" ry="16"/>
+<symbol id="leaf" viewBox="0 0 50 24"><path d="M2 12C14-2 36-2 48 12 36 26 14 26 2 12Z" fill="url(#lf)" stroke="url(#gold)" stroke-width=".8"/><path d="M2 12H46" stroke="url(#gold)" stroke-width=".6"/></symbol>
+<symbol id="bloom" viewBox="-30 -30 60 60"><g fill="url(#pet)" stroke="url(#gold)" stroke-width=".7"><ellipse cy="-14" rx="8" ry="15"/><ellipse cy="-14" rx="8" ry="15" transform="rotate(72)"/><ellipse cy="-14" rx="8" ry="15" transform="rotate(144)"/><ellipse cy="-14" rx="8" ry="15" transform="rotate(216)"/><ellipse cy="-14" rx="8" ry="15" transform="rotate(288)"/></g><circle r="4.5" fill="url(#gold)"/></symbol>
+<symbol id="rose" viewBox="-50 -50 100 100"><g fill="url(#pet)" stroke="url(#gold)" stroke-width=".9"><use href="#po"/><use href="#po" transform="rotate(60)"/><use href="#po" transform="rotate(120)"/><use href="#po" transform="rotate(180)"/><use href="#po" transform="rotate(240)"/><use href="#po" transform="rotate(300)"/><use href="#pm" transform="rotate(20)"/><use href="#pm" transform="rotate(92)"/><use href="#pm" transform="rotate(164)"/><use href="#pm" transform="rotate(236)"/><use href="#pm" transform="rotate(308)"/><circle r="11"/></g><path d="M0 0c6-2 8 5 2 8-8 3-14-6-8-13 8-8 22 0 18 12" fill="none" stroke="url(#gold)" stroke-width="1.2"/></symbol>
+</defs></svg>
+
+<svg id="frame" aria-hidden="true"></svg>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<!-- 1 · CINEMATIC INTRO -->
+<section id="intro" aria-label="Introduction">
+  <div class="intro-in">
+    <p class="eyebrow a" style="--d:3.2s">A Celebration of Love</p>
+    <h1 class="names script gt" aria-label="Herbie and Princess"><span class="a" style="--d:2.2s">Herbie</span><i class="a" style="--d:2.6s">&amp;</i><span class="a" style="--d:3s">Princess</span></h1>
+    <svg class="fl" viewBox="0 0 300 24" aria-hidden="true"><g fill="none" stroke="url(#gold)" stroke-width="1.4" stroke-linecap="round"><path pathLength="1" style="--d:1s" d="M8 12H118M182 12H292"/><path pathLength="1" style="--d:1.6s" d="M118 12c8-14 20 14 32 0s24 14 32 0"/></g></svg>
+    <p class="date a" style="--d:3.8s">April 10, 2027</p>
+    <div class="loader a" style="--d:.4s">
+      <svg class="bud" viewBox="-30 -30 60 60" width="64" height="64" aria-hidden="true"><use href="#bloom" x="-30" y="-30" width="60" height="60"/></svg>
+      <p>Preparing something beautiful for you…</p>
+      <div class="bar"><b></b></div>
+    </div>
+  </div>
+  <button id="skip" class="link">Skip intro</button>
+</section>
+
+<!-- 2 · ENVELOPE -->
+<section id="envelope" hidden aria-label="Invitation envelope">
+  <p class="eyebrow">You are cordially invited</p>
+  <div class="env" id="env">
+    <div class="env-back"></div>
+    <div class="letter"><small>The wedding of</small><b class="script gt">Herbie &amp; Princess</b><small>04 · 10 · 2027</small></div>
+    <div class="env-front"></div>
+    <div class="flap"></div>
+    <button class="seal" id="seal" aria-label="Open invitation"><span>H&amp;P</span></button>
+  </div>
+  <button class="btn" id="open">Open Invitation</button>
+</section>
+
+<!-- NAV -->
+<nav id="nav" hidden aria-label="Main">
+  <a class="brand script" href="#home">H&amp;P</a>
+  <button id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+  <ul>
+    <li><a href="#home">Home</a></li><li><a href="#story">Our Story</a></li><li><a href="#details">Wedding Details</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#rsvp">RSVP</a></li>
+  </ul>
+</nav>
+
+<button id="music" hidden aria-label="Play background music" aria-pressed="false"><span>♪</span><em>Our song</em></button>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<main id="main" hidden>
+<!-- 3 · HERO -->
+<section id="home" class="hero">
+  <p class="eyebrow reveal">Together with their families</p>
+  <h2 class="hero-names script gt reveal">Herbie <small>&amp;</small> Princess</h2>
+  <p class="hero-date reveal">April 10, 2027</p>
+  <p class="lead reveal">From classmates to best friends to forever — after a lifetime of small moments, we are saying “I do”, and we would be honoured to have you beside us.</p>
+  <div class="cd reveal" role="timer" aria-label="Countdown to the wedding">
+    <div><b id="cd-d">000</b><span>Days</span></div><div><b id="cd-h">00</b><span>Hours</span></div><div><b id="cd-m">00</b><span>Minutes</span></div><div><b id="cd-s">00</b><span>Seconds</span></div>
+  </div>
+  <p id="cd-done" class="script gt" hidden>Today, we say “I do” ♡</p>
+  <a class="cue" href="#story" aria-label="Scroll to our story">Our story<i></i></a>
+</section>
+
+<!-- 4 · LOVE STORY (rendered by script.js from the STORY array) -->
+<section id="story">
+  <header class="head reveal"><p class="eyebrow">Chapter by chapter</p><h2>Our Love Story</h2><p class="hint">Tap each chapter to open it ✦</p></header>
+  <div class="timeline" id="timeline"><span class="thread"></span></div>
+</section>
+
+<!-- 5 · WEDDING DETAILS — replace every <mark> placeholder -->
+<section id="details">
+  <header class="head reveal"><p class="eyebrow">Join us</p><h2>Wedding Details</h2></header>
+  <div class="grid">
+    <article class="card big reveal"><svg class="ic"><use href="#rose" width="56" height="56"/></svg><h3>The Ceremony</h3><p><mark>[Ceremony venue name]</mark><br><mark>[Venue address]</mark></p><p class="t">April 10, 2027 · <mark>[Time]</mark></p></article>
+    <article class="card reveal"><svg class="ic"><use href="#bloom" width="48" height="48"/></svg><h3>The Reception</h3><p><mark>[Reception venue]</mark><br><mark>[Address]</mark></p><p class="t"><mark>[Time]</mark></p></article>
+    <article class="card reveal"><svg class="ic"><use href="#leaf" width="56" height="30"/></svg><h3>Dress Code</h3><p><mark>[Champagne, ivory &amp; soft neutrals]</mark></p><div class="sws"><i style="background:#f6eddb"></i><i style="background:#e6d3a8"></i><i style="background:#c9a24d"></i><i style="background:#fffdf8"></i></div></article>
+    <article class="card wide reveal"><h3>Gentle Reminders</h3><p><mark>[Kindly confirm your attendance by (date).]</mark> <mark>[Parking, children, gifts, photos…]</mark></p></article>
+  </div>
+</section>
+
+<!-- 6 · GALLERY (rendered from PHOTOS array in script.js) -->
+<section id="gallery">
+  <header class="head reveal"><p class="eyebrow">Moments</p><h2>Our Gallery</h2></header>
+  <div class="gal" id="gal"></div>
+</section>
+
+<!-- 7 · RSVP — frontend only; see submitRSVP() in script.js to add a backend later -->
+<section id="rsvp">
+  <header class="head reveal"><p class="eyebrow">Kindly reply</p><h2>RSVP</h2></header>
+  <div class="rsvp reveal">
+    <form id="form" novalidate>
+      <label>Full name<input name="name" autocomplete="name" required><small class="err"></small></label>
+      <label>Email address<input name="email" type="email" autocomplete="email" required><small class="err"></small></label>
+      <fieldset><legend>Will you attend?</legend>
+        <label class="rad"><input type="radio" name="attend" value="yes"><span>Joyfully accepts</span></label>
+        <label class="rad"><input type="radio" name="attend" value="no"><span>Regretfully declines</span></label><small class="err"></small></fieldset>
+      <div class="two">
+        <label>Number of guests<select name="guests"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+        <label>Meal preference <em>(optional)</em><select name="meal"><option value="">No preference</option><option>Meat</option><option>Fish</option><option>Vegetarian</option></select></label>
+      </div>
+      <label>Message for the couple <em>(optional)</em><textarea name="msg" rows="3"></textarea></label>
+      <button class="btn" type="submit">Send RSVP</button>
+    </form>
+    <div id="thanks" hidden><svg width="70" height="70"><use href="#rose" width="70" height="70"/></svg><h3 class="script gt">Thank you!</h3><p>Your response has been received. We can’t wait to celebrate with you.</p></div>
+  </div>
+</section>
+<footer><p class="script gt">Herbie &amp; Princess</p><p>04 · 10 · 2027 &nbsp;·&nbsp; #HerbieAndPrincessForever</p></footer>
+</main>
+
+<div id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="x" aria-label="Close">×</button><button class="pv" aria-label="Previous">‹</button><div class="lb-img" id="lb-img"></div><button class="nx" aria-label="Next">›</button><p id="lb-cap"></p>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
